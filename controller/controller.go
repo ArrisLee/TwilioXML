@@ -10,14 +10,41 @@ import (
 //TwiXML func
 //pass text and retrieve XML to make the call
 func TwiXML(c echo.Context) error {
+	//validate input, if nil, set defualt value
+	text := c.QueryParam("text")
+	shortID := c.QueryParam("shortID")
+	if text == "" {
+		text = "Hello, this is the call from GOGO, you have a new order, the order number is"
+	}
+	if shortID == "" {
+		shortID = "A A B B C C"
+	}
+	//compose XML structs
+	type prosody struct {
+		XMLName xml.Name `xml:"prosody"`
+		ShortID string   `xml:",chardata"`
+		Rate    string   `xml:"rate,attr"`
+	}
+	type say struct {
+		Text    string  `xml:",chardata"`
+		Prosody prosody `xml:",innerxml"`
+	}
 	type TwiML struct {
 		XMLName xml.Name `xml:"Response"`
-		Say     string   `xml:"Say"`
+		Say     say      `xml:"Say"`
 	}
-	text := c.QueryParam("text")
-	if text == "" {
-		text = "Hello, this is a call from gogo, you have a new oder"
-	}
-	twiml := TwiML{Say: text}
+	//assign input value to xml structs
+	pr := prosody{}
+	//set shortID
+	pr.ShortID = shortID
+	//set voice speed to 48%
+	pr.Rate = "48%"
+	sy := say{}
+	//set basic text
+	sy.Text = text
+	sy.Prosody = pr
+	twiml := TwiML{}
+	twiml.Say = sy
+	//retrun xml file
 	return c.XMLPretty(http.StatusOK, twiml, " ")
 }
