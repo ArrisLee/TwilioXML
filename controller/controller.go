@@ -38,7 +38,7 @@ func TwiXML(c echo.Context) error {
 	//set shortID
 	pr.ShortID = shortID
 	//set voice speed to 48%
-	pr.Rate = "48%"
+	pr.Rate = "50%"
 	sy := say{}
 	//set basic text
 	sy.Text = text
