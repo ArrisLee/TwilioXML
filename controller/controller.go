@@ -7,17 +7,17 @@ import (
 	"github.com/labstack/echo"
 )
 
-//GetXML func
+//TwiXML func
 //pass text and retrieve XML to make the call
-func GetXML(c echo.Context) error {
+func TwiXML(c echo.Context) error {
 	type TwiML struct {
 		XMLName xml.Name `xml:"Response"`
 		Say     string   `xml:"Say"`
 	}
 	text := c.QueryParam("text")
 	if text == "" {
-		text = "Hello, this is the call from: GOGO, you have a new order!"
+		text = "Q,W,D,3,2,1"
 	}
 	twiml := TwiML{Say: text}
-	return c.XML(http.StatusOK, twiml)
+	return c.XMLPretty(http.StatusOK, twiml, " ")
 }

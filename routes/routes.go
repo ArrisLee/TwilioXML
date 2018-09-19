@@ -15,7 +15,7 @@ func Run() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	// Routes
-	e.GET("/getxml", controller.GetXML)
+	e.POST("/twixml", controller.TwiXML)
 	// Start server
 	e.Logger.Fatal(e.Start(":8500"))
 }
