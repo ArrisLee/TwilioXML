@@ -16,7 +16,7 @@ func TwiXML(c echo.Context) error {
 	}
 	text := c.QueryParam("text")
 	if text == "" {
-		text = "Q,W,D,3,2,1"
+		text = "Hello, this is a call from gogo, you have a new oder"
 	}
 	twiml := TwiML{Say: text}
 	return c.XMLPretty(http.StatusOK, twiml, " ")
