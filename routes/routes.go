@@ -12,7 +12,8 @@ func Run() {
 	// Echo instance
 	e := echo.New()
 	// Middleware
-	e.Use(middleware.Logger())
+	// e.Use(middleware.Logger())
+	e.Use(middleware.CORS())
 	e.Use(middleware.Recover())
 	// Routes
 	e.POST("/twixml", controller.TwiXML)
