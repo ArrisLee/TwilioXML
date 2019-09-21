@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"twilioXML/controller"
+	"github.com/ArrisLee/TwilioXML/controller"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
