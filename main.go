@@ -1,6 +1,6 @@
 package main
 
-import "twilioXML/routes"
+import "github.com/ArrisLee/TwilioXML/routes"
 
 func main() {
 	routes.Run()
