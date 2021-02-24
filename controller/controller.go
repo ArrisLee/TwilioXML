@@ -14,7 +14,7 @@ func TwiXML(c echo.Context) error {
 	text := c.QueryParam("text")
 	shortID := c.QueryParam("shortID")
 	if text == "" {
-		text = "Hello, this is the call from GOGO, you have a new order, the order number is"
+		text = "Hello, you have a new order, order number is"
 	}
 	if shortID == "" {
 		shortID = "A A B B C C"
